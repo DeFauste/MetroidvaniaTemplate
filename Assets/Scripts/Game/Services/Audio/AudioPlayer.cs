@@ -11,10 +11,10 @@ namespace Game.Services.Audio
         {
             var audioPlayerGameObject = new GameObject("AudioPlayer");
             Object.DontDestroyOnLoad(audioPlayerGameObject);
-            
+
             _musicSource = audioPlayerGameObject.AddComponent<AudioSource>();
             _musicSource.loop = true;
-            
+
             _effectsSource = audioPlayerGameObject.AddComponent<AudioSource>();
         }
 
@@ -29,9 +29,18 @@ namespace Game.Services.Audio
             _musicSource.Stop();
         }
 
-        public void PlaySfx(AudioClip clip, float volume = 1f)
+        public void PlaySfx(AudioClip clip, float volume = 1f, AudioSource audioSource = null, bool oneShot = true)
         {
-            _effectsSource.PlayOneShot(clip, volume);
+            var source = audioSource ?? _effectsSource;
+            if (oneShot)
+            {
+                source.PlayOneShot(clip, volume);
+            }
+            else
+            {
+                source.clip = clip;
+                source.Play();
+            }
         }
     }
 }

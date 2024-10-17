@@ -36,7 +36,7 @@ namespace Game.Services.Audio
             }
         }
 
-        public void PlaySfx(string id, float volume = 1.0f)
+        public void PlaySfx(string id, float volume = 1.0f, AudioSource audioSource = null, bool oneShot = true)
         {
             var clip = _audioLibrary.GetClipById(id);
             if (clip != null)
