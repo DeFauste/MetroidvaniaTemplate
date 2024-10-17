@@ -5,17 +5,18 @@ namespace Game.Services.Audio
 {
     public class AudioMixerController : MonoBehaviour
     {
-        private readonly AudioMixer _audioMixer;
         private const string MasterVolumeParameter = "MasterVolume";
         private const string MusicVolumeParameter = "MusicVolume";
         private const string SfxVolumeParameter = "SfxVolume";
         private const string UiVolumeParameter = "UiVolume";
 
+        private readonly AudioMixer _audioMixer;
+
         public AudioMixerController(AudioMixer audioMixer)
         {
             _audioMixer = audioMixer;
         }
-        
+
         public void SetMusicVolume(float volume)
         {
             _audioMixer.SetFloat(MusicVolumeParameter, Mathf.Log10(volume) * 20);
