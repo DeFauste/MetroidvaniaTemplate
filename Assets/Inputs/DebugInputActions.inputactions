@@ -6,7 +6,7 @@
             "id": "62ea052b-2012-4c7f-87e1-80580e3eb502",
             "actions": [
                 {
-                    "name": "DebugEction",
+                    "name": "DebugAction",
                     "type": "Button",
                     "id": "162f35ee-7714-44ca-bdf7-c0e83fb51fd8",
                     "expectedControlType": "Button",
@@ -19,11 +19,11 @@
                 {
                     "name": "",
                     "id": "8579313b-68e7-436d-bf26-efb2146c44a0",
-                    "path": "<Keyboard>/t",
+                    "path": "<Keyboard>/anyKey",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DebugEction",
+                    "action": "DebugAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

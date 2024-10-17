@@ -28,7 +28,7 @@ public partial class @DebugInputActions: IInputActionCollection2, IDisposable
             ""id"": ""62ea052b-2012-4c7f-87e1-80580e3eb502"",
             ""actions"": [
                 {
-                    ""name"": ""DebugEction"",
+                    ""name"": ""DebugAction"",
                     ""type"": ""Button"",
                     ""id"": ""162f35ee-7714-44ca-bdf7-c0e83fb51fd8"",
                     ""expectedControlType"": ""Button"",
@@ -41,11 +41,11 @@ public partial class @DebugInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8579313b-68e7-436d-bf26-efb2146c44a0"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""path"": ""<Keyboard>/anyKey"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""DebugEction"",
+                    ""action"": ""DebugAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -56,7 +56,7 @@ public partial class @DebugInputActions: IInputActionCollection2, IDisposable
 }");
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
-        m_Debug_DebugEction = m_Debug.FindAction("DebugEction", throwIfNotFound: true);
+        m_Debug_DebugAction = m_Debug.FindAction("DebugAction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -118,12 +118,12 @@ public partial class @DebugInputActions: IInputActionCollection2, IDisposable
     // Debug
     private readonly InputActionMap m_Debug;
     private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
-    private readonly InputAction m_Debug_DebugEction;
+    private readonly InputAction m_Debug_DebugAction;
     public struct DebugActions
     {
         private @DebugInputActions m_Wrapper;
         public DebugActions(@DebugInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction DebugAction => m_Wrapper.m_Debug_DebugEction;
+        public InputAction @DebugAction => m_Wrapper.m_Debug_DebugAction;
         public InputActionMap Get() { return m_Wrapper.m_Debug; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -133,16 +133,16 @@ public partial class @DebugInputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_DebugActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_DebugActionsCallbackInterfaces.Add(instance);
-            DebugAction.started += instance.OnDebugAction;
-            DebugAction.performed += instance.OnDebugAction;
-            DebugAction.canceled += instance.OnDebugAction;
+            @DebugAction.started += instance.OnDebugAction;
+            @DebugAction.performed += instance.OnDebugAction;
+            @DebugAction.canceled += instance.OnDebugAction;
         }
 
         private void UnregisterCallbacks(IDebugActions instance)
         {
-            DebugAction.started -= instance.OnDebugAction;
-            DebugAction.performed -= instance.OnDebugAction;
-            DebugAction.canceled -= instance.OnDebugAction;
+            @DebugAction.started -= instance.OnDebugAction;
+            @DebugAction.performed -= instance.OnDebugAction;
+            @DebugAction.canceled -= instance.OnDebugAction;
         }
 
         public void RemoveCallbacks(IDebugActions instance)
