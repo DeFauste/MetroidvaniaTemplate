@@ -1,9 +1,8 @@
 using Zenject;
-using UnityEngine;
 
 namespace Game.Services.Debugging
 {
-    public class DebugInputInstaller : MonoInstaller
+    public class DebugInputServiceInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {

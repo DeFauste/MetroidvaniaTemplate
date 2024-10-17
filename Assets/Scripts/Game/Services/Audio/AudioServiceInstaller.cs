@@ -11,14 +11,14 @@ namespace Game.Services.Audio
             var audioMixer = Resources.Load<AudioMixer>("AudioMixer");
             if (audioMixer == null)
             {
-                Debug.LogError($"Audio Library not found: {Resources.Load<AudioLibrary>("AudioLibrary")}");
+                Debug.LogError($"Audio Mixer not found in resources");
                 return;
             }
             
             var audioLibrary = Resources.Load<AudioLibrary>("AudioLibrary");
             if (audioLibrary == null)
             {
-                Debug.LogError($"Audio Library not found: {Resources.Load<AudioLibrary>("AudioLibrary")}");
+                Debug.LogError($"Audio Library not found in resources");
                 return;
             }
 
