@@ -3,7 +3,7 @@ using UnityEngine.Audio;
 
 namespace Game.Services.Audio
 {
-    public class AudioMixerController : MonoBehaviour
+    public class AudioMixerController
     {
         private const string MasterVolumeParameter = "MasterVolume";
         private const string MusicVolumeParameter = "MusicVolume";
