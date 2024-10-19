@@ -14,7 +14,7 @@ namespace Game.Services.Audio
                 Debug.LogError($"Audio Mixer not found in resources");
                 return;
             }
-            
+
             var audioLibrary = Resources.Load<AudioLibrary>("AudioLibrary");
             if (audioLibrary == null)
             {
@@ -23,6 +23,7 @@ namespace Game.Services.Audio
             }
 
             Container.Bind<AudioService>().AsSingle().WithArguments(audioMixer, audioLibrary).NonLazy();
+            Debug.Log($"Audio Service installed to Project Context");
         }
     }
 }
