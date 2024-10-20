@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -9,6 +10,12 @@ namespace Game.Services.SceneTransition
     {
         [SerializeField] private CanvasGroup fadeCanvasGroup;
         [SerializeField] private Slider progressBar;
+
+
+        private void Start()
+        {
+            FadeIn(1f).Forget();
+        }
 
         public async UniTask FadeIn(float duration)
         {
