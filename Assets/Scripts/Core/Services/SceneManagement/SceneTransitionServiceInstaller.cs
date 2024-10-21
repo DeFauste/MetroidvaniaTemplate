@@ -20,11 +20,22 @@ namespace Core.Services.SceneManagement
 
             Debug.Log("SceneTransitionServiceInstaller: Prefab loaded successfully");
 
-            var controllerInstance = Container.InstantiatePrefabForComponent<SceneTransitionController>(sceneTransitionControllerPrefab);
-            GameObject.DontDestroyOnLoad(controllerInstance.gameObject);
+            // Инстанцируем префаб как корневой объект в сцене
+            var controllerInstance = Instantiate(sceneTransitionControllerPrefab);
+            GameObject.DontDestroyOnLoad(controllerInstance); // Применяем DontDestroyOnLoad для корневого объекта
 
-            Container.Bind<SceneTransitionController>().FromInstance(controllerInstance).AsSingle().NonLazy();
-            Container.Bind<SceneTransitionService>().AsSingle();
+            // Получаем компонент SceneTransitionController из инстанцированного объекта
+            var controllerComponent = controllerInstance.GetComponent<SceneTransitionController>();
+
+            if (controllerComponent == null)
+            {
+                Debug.LogError("SceneTransitionController не найден на загруженном префабе.");
+                return;
+            }
+
+            // Привязываем компонент SceneTransitionController
+            Container.Bind<SceneTransitionController>().FromInstance(controllerComponent).AsSingle().NonLazy();
+            Container.Bind<SceneTransitionService>().AsSingle().NonLazy();
         }
     }
 }
