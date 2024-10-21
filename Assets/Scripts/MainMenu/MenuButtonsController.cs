@@ -1,6 +1,7 @@
 using Core.Services.SceneManagement;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
@@ -21,12 +22,12 @@ namespace MainMenu
 
         private void OnEnable()
         {
-            _startGameButton.onClick.AddListener(() => _sceneTransitionService.LoadScene("TemplateScene").Forget() );
+            _startGameButton.onClick.AddListener(() => _sceneTransitionService.LoadScene("SceneTemplate").Forget() );
         }
 
         private void OnDisable()
         {
-            _startGameButton.onClick.RemoveListener(() => _sceneTransitionService.LoadScene("TemplateScene").Forget() );
+            _startGameButton.onClick.RemoveListener(() => _sceneTransitionService.LoadScene("SceneTemplate").Forget() );
         }
     }
 }

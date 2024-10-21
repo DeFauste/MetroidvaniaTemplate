@@ -11,12 +11,6 @@ namespace Core.Services.SceneManagement
         private AsyncSceneLoader _sceneLoader = new();
         private SceneTransitionController _transitionController;
 
-        [DebugKey(Key.A)]
-        public void Test()
-        {
-            LoadScene("SceneTemplate").Forget();
-        }
-
         [Inject]
         public void Construct(SceneTransitionController transitionController)
         {

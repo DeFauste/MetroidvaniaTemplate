@@ -107,8 +107,6 @@ namespace Core.SceneManagement
         {
             if (!CanProceedWithOperation(sceneName)) return;
 
-            _isOperationInProgress = true;
-
             try
             {
                 // Step 1: Load empty boot scene

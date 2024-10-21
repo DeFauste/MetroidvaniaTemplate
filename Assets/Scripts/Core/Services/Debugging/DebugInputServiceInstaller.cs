@@ -9,7 +9,7 @@ namespace Core.Services.Debugging
         public override void InstallBindings()
         {
 #if UNITY_EDITOR
-            Container.Bind<DebugInputSystem>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<DebugInputSystem>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DebugInputService>().AsSingle().NonLazy();
             Debug.Log($"DebugInputServiceInstaller installed to Project Context");
 #endif
