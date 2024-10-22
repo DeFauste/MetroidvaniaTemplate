@@ -49,6 +49,7 @@ namespace Assets.Scripts.Core.PopupSystem
                  .AddTo(this);
             }
         }
-
+        public void SetPosition(Vector3 position) => gameObject.transform.position = position;
+        
     }
 }
