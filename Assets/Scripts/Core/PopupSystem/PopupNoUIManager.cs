@@ -27,11 +27,27 @@ namespace Assets.Scripts.Core.PopupSystem
 
         public PopupNoUI GetPopup(string text = "")
         {
-            PopupNoUI popup = _popupStack.Count > 0 ? _popupStack.Pop() : CreatePopup();
+            PopupNoUI popup = GetAvailablePopup() ?? CreateNewPopup();
+            ConfigurePopup(popup, text);
+            return popup;
+        }
+
+        private PopupNoUI GetAvailablePopup()
+        {
+            return _popupStack.Count > 0 ? _popupStack.Pop() : null;
+        }
+
+        private PopupNoUI CreateNewPopup()
+        {
+            PopupNoUI popup = CreatePopup();
             ObserveState(popup);
+            return popup;
+        }
+
+        private void ConfigurePopup(PopupNoUI popup, string text)
+        {
             popup.SetText(text);
             popup.SetActive(true);
-            return popup;
         }
 
         private PopupNoUI CreatePopup()
