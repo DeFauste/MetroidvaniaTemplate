@@ -12,6 +12,8 @@ namespace Assets.Scripts.Core.PopupSystem
     public class PopupNoUI: MonoBehaviour
     {
         [SerializeField] private TextMeshPro _tmp;
+        private IDisposable _timerDisposable;
+
         private void Awake()
         {
             if(_tmp == null) _tmp = GetComponent<TextMeshPro>();
@@ -44,12 +46,24 @@ namespace Assets.Scripts.Core.PopupSystem
         {
             if (second > 0)
             {
-                Observable.Timer(TimeSpan.FromSeconds(second))
+                _timerDisposable = Observable.Timer(TimeSpan.FromSeconds(second))
                  .Subscribe(_ => SetActive(false))
                  .AddTo(this);
             }
         }
         public void SetPosition(Vector3 position) => gameObject.transform.position = position;
-        
+
+        private void OnDisable()
+        {
+            DisposeTimer();
+        }
+        private void DisposeTimer()
+        {
+            if (_timerDisposable != null)
+            {
+                _timerDisposable.Dispose();
+                _timerDisposable = null;
+            }
+        }
     }
 }
